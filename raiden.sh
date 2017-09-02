@@ -44,6 +44,7 @@ fi
 echo
 
 # Destroy previous RAID config
+sudo umount /dev/md0
 mdadm --manage --stop $RAID_DEVICE
 mdadm --manage --remove $RAID_DEVICE
 
