@@ -78,7 +78,7 @@ for blocksize in $blocksizes
 do
     echo
     echo
-    echo "starting tests with blocksize: "$blocksize
+    echo "========== starting tests with blocksize: "$blocksize" =========="
     echo
     echo "testing sequential write"
     fio --name fio_test_file --direct=1 --rw=write --bs=$blocksize --size=1G --numjobs=100 --time_based --runtime=$TEST_RUNTIME --group_reporting
@@ -91,7 +91,7 @@ do
     echo "testing random read/write"
     fio --name fio_test_file --direct=1 --rw=randread --bs=$blocksize --size=1G --numjobs=100 --time_based --runtime=$TEST_RUNTIME --group_reporting
     echo
-    echo "done"
+    echo "========== done =========="
     echo
 done
 
