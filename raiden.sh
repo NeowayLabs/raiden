@@ -49,7 +49,7 @@ set -o errexit
 
 echo
 echo "RAID chunk size (KB): "$CHUNK_SIZE_KB
-mdadm --create --verbose $RAID_DEVICE \
+mdadm --create --force --verbose $RAID_DEVICE \
         --level=0 \
         --name=md0 \
         --chunk=$CHUNK_SIZE_KB"K" \
