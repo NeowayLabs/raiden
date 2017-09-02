@@ -9,7 +9,7 @@ if (( $# < 1 )); then
     exit
 fi
 
-CHUNK_SIZE_KB=$0
+CHUNK_SIZE_KB=$1
 BLOCK_SIZE_BYTES=4096
 BLOCK_SIZE_KB=4
 NUMBER_RAID_DISKS=17
