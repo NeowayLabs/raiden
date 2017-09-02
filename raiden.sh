@@ -49,7 +49,7 @@ echo "RAID chunk size (KB): "$CHUNK_SIZE_KB
 mdadm --create --verbose /dev/md0 \
         --level=0 \
         --name=md0 \
-        --chunk=CHUNK_SIZE_KB"K" \
+        --chunk=$CHUNK_SIZE_KB"K" \
         --raid-devices=$NUMBER_RAID_DISKS $DEVICES
 
 # https://wiki.archlinux.org/index.php/RAID#Calculating_the_Stride_and_Stripe_Width
