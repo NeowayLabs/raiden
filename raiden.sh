@@ -13,6 +13,7 @@ BLOCK_SIZE_BYTES=4096
 BLOCK_SIZE_KB=4
 NUMBER_RAID_DISKS=17
 RAID_DEVICE=/dev/md0
+TEST_RUNTIME=120
 DEVICES="
     /dev/sdc
     /dev/sdd
@@ -40,6 +41,7 @@ then
     echo "aborting"
     exit 0
 fi
+echo
 
 # Destroy previous RAID config
 mdadm --manage --stop $RAID_DEVICE
@@ -62,5 +64,28 @@ stride=$(expr $CHUNK_SIZE_KB \/ $BLOCK_SIZE_KB)
 stripe_width=$(expr $NUMBER_RAID_DISKS \* $stride)
 
 echo "Formatting filesystem as ext4 with blocksize: "$BLOCK_SIZE_BYTES" stride: "$stride" stripe_width: "$stripe_width
-
 mkfs.ext4 -v -L pgdata -b $BLOCK_SIZE_BYTES -E stride=$stride,stripe-width=$stripe_width /dev/md0
+
+echo "Starting tests"
+
+blocksizes="8K 16K 32K 64K 128K 256K 512K"
+for blocksize in "$blocksizes"
+do
+    echo
+    echo
+    echo "starting tests with blocksize: "$blocksize
+    echo
+    echo "testing sequential write"
+    fio --name fio_test_file --latency-log --direct=1 --rw=write --bs=$blocksize --size=1G --numjobs=100 --time_based --runtime=$TEST_RUNTIME --group_reporting
+    echo "testing sequential read"
+    fio --name fio_test_file --latency-log --direct=1 --rw=read --bs=$blocksize --size=1G --numjobs=100 --time_based --runtime=$TEST_RUNTIME --group_reporting
+    echo "testing random write"
+    fio --name fio_test_file --latency-log --direct=1 --rw=randwrite --bs=$blocksize --size=1G --numjobs=100 --time_based --runtime=$TEST_RUNTIME --group_reporting
+    echo "testing random read"
+    fio --name fio_test_file --latency-log --direct=1 --rw=randread --bs=$blocksize --size=1G --numjobs=100 --time_based --runtime=$TEST_RUNTIME --group_reporting
+    echo "testing random read/write"
+    fio --name fio_test_file --latency-log --direct=1 --rw=randread --bs=$blocksize --size=1G --numjobs=100 --time_based --runtime=$TEST_RUNTIME --group_reporting
+    echo
+    echo "done"
+    echo
+done
