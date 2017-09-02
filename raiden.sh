@@ -47,6 +47,6 @@ mdadm --create --verbose /dev/md0 \
 stride=$($CHUNK_SIZE_KB \/ $BLOCK_SIZE_KB)
 stripe_width=$(expr $NUMBER_RAID_DISKS \* $stride)
 
-echo "Formatting filesystem as ext 4 with blocksize: "$blocksize" stride: "$stride" stripe_width: "$stripe_width
+echo "Formatting filesystem as ext4 with blocksize: "$BLOCK_SIZE_BYTES" stride: "$stride" stripe_width: "$stripe_width
 
-mkfs.ext4 -v -L pgdata -b $blocksize -E stride=$stride,stripe-width=$stripe_width /dev/md0
+mkfs.ext4 -v -L pgdata -b $BLOCK_SIZE_BYTES -E stride=$stride,stripe-width=$stripe_width /dev/md0
