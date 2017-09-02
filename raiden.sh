@@ -1,6 +1,15 @@
 #!/bin/bash
 
-CHUNK_SIZE_KB=512
+set -o nounset
+set -o errexit
+
+if (( $# < 1 )); then
+    echo "usage: "$0" <RAID chunk size in kb>"
+    echo "eg: "$0" 256"
+    exit
+fi
+
+CHUNK_SIZE_KB=$0
 BLOCK_SIZE_BYTES=4096
 BLOCK_SIZE_KB=4
 NUMBER_RAID_DISKS=17
@@ -35,6 +44,8 @@ fi
 # create raid
 # TODO: Destroy previous RAID config
 
+echo
+echo "RAID chunk size (KB): "$CHUNK_SIZE_KB
 mdadm --create --verbose /dev/md0 \
         --level=0 \
         --name=md0 \
