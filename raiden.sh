@@ -76,15 +76,15 @@ do
     echo "starting tests with blocksize: "$blocksize
     echo
     echo "testing sequential write"
-    fio --name fio_test_file --latency-log --direct=1 --rw=write --bs=$blocksize --size=1G --numjobs=100 --time_based --runtime=$TEST_RUNTIME --group_reporting
+    fio --name fio_test_file --direct=1 --rw=write --bs=$blocksize --size=1G --numjobs=100 --time_based --runtime=$TEST_RUNTIME --group_reporting
     echo "testing sequential read"
-    fio --name fio_test_file --latency-log --direct=1 --rw=read --bs=$blocksize --size=1G --numjobs=100 --time_based --runtime=$TEST_RUNTIME --group_reporting
+    fio --name fio_test_file --direct=1 --rw=read --bs=$blocksize --size=1G --numjobs=100 --time_based --runtime=$TEST_RUNTIME --group_reporting
     echo "testing random write"
-    fio --name fio_test_file --latency-log --direct=1 --rw=randwrite --bs=$blocksize --size=1G --numjobs=100 --time_based --runtime=$TEST_RUNTIME --group_reporting
+    fio --name fio_test_file --direct=1 --rw=randwrite --bs=$blocksize --size=1G --numjobs=100 --time_based --runtime=$TEST_RUNTIME --group_reporting
     echo "testing random read"
-    fio --name fio_test_file --latency-log --direct=1 --rw=randread --bs=$blocksize --size=1G --numjobs=100 --time_based --runtime=$TEST_RUNTIME --group_reporting
+    fio --name fio_test_file --direct=1 --rw=randread --bs=$blocksize --size=1G --numjobs=100 --time_based --runtime=$TEST_RUNTIME --group_reporting
     echo "testing random read/write"
-    fio --name fio_test_file --latency-log --direct=1 --rw=randread --bs=$blocksize --size=1G --numjobs=100 --time_based --runtime=$TEST_RUNTIME --group_reporting
+    fio --name fio_test_file --direct=1 --rw=randread --bs=$blocksize --size=1G --numjobs=100 --time_based --runtime=$TEST_RUNTIME --group_reporting
     echo
     echo "done"
     echo
