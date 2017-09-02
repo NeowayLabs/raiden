@@ -69,7 +69,7 @@ mkfs.ext4 -v -L pgdata -b $BLOCK_SIZE_BYTES -E stride=$stride,stripe-width=$stri
 echo "Starting tests"
 
 blocksizes="8K 16K 32K 64K 128K 256K 512K"
-for blocksize in "$blocksizes"
+for blocksize in $blocksizes
 do
     echo
     echo
