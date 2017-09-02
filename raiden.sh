@@ -65,6 +65,11 @@ stripe_width=$(expr $NUMBER_RAID_DISKS \* $stride)
 
 echo "Formatting filesystem as ext4 with blocksize: "$BLOCK_SIZE_BYTES" stride: "$stride" stripe_width: "$stripe_width
 mkfs.ext4 -v -L pgdata -b $BLOCK_SIZE_BYTES -E stride=$stride,stripe-width=$stripe_width /dev/md0
+mkdir -d /fiotests
+mount /dev/md0 /fiotests
+
+olddir=$(pwd)
+cd /fiotests
 
 echo "Starting tests"
 
@@ -89,3 +94,5 @@ do
     echo "done"
     echo
 done
+
+cd $olddir
