@@ -55,7 +55,7 @@ mdadm --create --verbose /dev/md0 \
 # https://wiki.archlinux.org/index.php/RAID#Calculating_the_Stride_and_Stripe_Width
 # stride = chunk size / block size
 # stripe width = number of data disks * stride
-stride=$($CHUNK_SIZE_KB \/ $BLOCK_SIZE_KB)
+stride=$(expr $CHUNK_SIZE_KB \/ $BLOCK_SIZE_KB)
 stripe_width=$(expr $NUMBER_RAID_DISKS \* $stride)
 
 echo "Formatting filesystem as ext4 with blocksize: "$BLOCK_SIZE_BYTES" stride: "$stride" stripe_width: "$stripe_width
