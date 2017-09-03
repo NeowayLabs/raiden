@@ -1,11 +1,11 @@
 from collections import namedtuple
 
-BenchmarkResult = namedtuple('BenchmarkResult', ['chunk_size'])
+BenchmarkResult = namedtuple('BenchmarkResult', ['chunk_size_kb'])
 
 def parse(rawdata):
     lines = rawdata.readlines()
     chunk_size, lines = _parse_chunk_size(lines)
-    return BenchmarkResult(chunk_size=chunk_size)
+    return BenchmarkResult(chunk_size_kb=chunk_size)
 
 def _parse_chunk_size(lines):
     chunksize_prefix = "RAID chunk size (KB):"
