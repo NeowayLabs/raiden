@@ -1,0 +1,328 @@
+All data will be lost on configured devices, are you sure to go on ?
+
+
+RAID chunk size (KB): 512
+umount: /dev/md0: not mounted
+mdadm: stopped /dev/md0
+mdadm: error opening /dev/md0: No such file or directory
+mdadm: /dev/sdc appears to be part of a raid array:
+       level=raid0 devices=17 ctime=Sat Sep  2 23:02:48 2017
+mdadm: /dev/sdd appears to be part of a raid array:
+       level=raid0 devices=17 ctime=Sat Sep  2 23:02:48 2017
+mdadm: /dev/sde appears to be part of a raid array:
+       level=raid0 devices=17 ctime=Sat Sep  2 23:02:48 2017
+mdadm: /dev/sdf appears to be part of a raid array:
+       level=raid0 devices=17 ctime=Sat Sep  2 23:02:48 2017
+mdadm: /dev/sdg appears to be part of a raid array:
+       level=raid0 devices=17 ctime=Sat Sep  2 23:02:48 2017
+mdadm: /dev/sdh appears to be part of a raid array:
+       level=raid0 devices=17 ctime=Sat Sep  2 23:02:48 2017
+mdadm: /dev/sdi appears to be part of a raid array:
+       level=raid0 devices=17 ctime=Sat Sep  2 23:02:48 2017
+mdadm: /dev/sdj appears to be part of a raid array:
+       level=raid0 devices=17 ctime=Sat Sep  2 23:02:48 2017
+mdadm: /dev/sdk appears to be part of a raid array:
+       level=raid0 devices=17 ctime=Sat Sep  2 23:02:48 2017
+mdadm: /dev/sdl appears to be part of a raid array:
+       level=raid0 devices=17 ctime=Sat Sep  2 23:02:48 2017
+mdadm: /dev/sdm appears to be part of a raid array:
+       level=raid0 devices=17 ctime=Sat Sep  2 23:02:48 2017
+mdadm: /dev/sdn appears to be part of a raid array:
+       level=raid0 devices=17 ctime=Sat Sep  2 23:02:48 2017
+mdadm: /dev/sdo appears to be part of a raid array:
+       level=raid0 devices=17 ctime=Sat Sep  2 23:02:48 2017
+mdadm: /dev/sdp appears to be part of a raid array:
+       level=raid0 devices=17 ctime=Sat Sep  2 23:02:48 2017
+mdadm: /dev/sdq appears to be part of a raid array:
+       level=raid0 devices=17 ctime=Sat Sep  2 23:02:48 2017
+mdadm: /dev/sdr appears to be part of a raid array:
+       level=raid0 devices=17 ctime=Sat Sep  2 23:02:48 2017
+mdadm: /dev/sds appears to be part of a raid array:
+       level=raid0 devices=17 ctime=Sat Sep  2 23:02:48 2017
+Continue creating array? Continue creating array? (y/n) mdadm: Defaulting to version 1.2 metadata
+Formatting filesystem as ext4 with blocksize: 4096 stride: 128 stripe_width: 2176
+fs_types for mke2fs.conf resolution: 'ext4', 'huge'
+Filesystem label=pgdata
+OS type: Linux
+Block size=4096 (log=2)
+Fragment size=4096 (log=2)
+Stride=128 blocks, Stripe width=2176 blocks
+284899328 inodes, 4558389248 blocks
+227919462 blocks (5.00%) reserved for the super user
+First data block=0
+139111 block groups
+32768 blocks per group, 32768 fragments per group
+2048 inodes per group
+Superblock backups stored on blocks: 
+	32768, 98304, 163840, mdadm: array /dev/md0 started.
+mke2fs 1.42.9 (28-Dec-2013)
+229376, 294912, 819200, 884736, 1605632, 2654208, 
+	4096000, 7962624, 11239424, 20480000, 23887872, 71663616, 78675968, 
+	102400000, 214990848, 512000000, 550731776, 644972544, 1934917632, 
+	2560000000, 3855122432
+
+Allocating group tables:      0/139111  3828/139111 30688/139111 57425/139111 83631/139111107710/139111131669/139111             done                            
+Writing inode tables:      0/139111             done                            
+Creating journal (32768 blocks): done
+Writing superblocks and filesystem accounting information:      0/139111             done
+
+Starting tests
+
+
+========== starting tests with blocksize: 8K ==========
+
+testing sequential write
+fio_test_file: (g=0): rw=write, bs=8K-8K/8K-8K/8K-8K, ioengine=sync, iodepth=1
+...
+fio-2.2.8
+Starting 100 processes
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+fio_test_file: Laying out IO file(s) (1 file(s) / 1024MB)
+
+fio_test_file: (groupid=0, jobs=100): err= 0: pid=4810: Sat Sep  2 23:05:57 2017
+  write: io=38193MB, bw=325885KB/s, iops=40735, runt=120011msec
+    clat (msec): min=1, max=299, avg= 2.45, stdev= 1.54
+     lat (msec): min=1, max=299, avg= 2.45, stdev= 1.54
+    clat percentiles (usec):
+     |  1.00th=[ 1752],  5.00th=[ 1816], 10.00th=[ 1864], 20.00th=[ 1912],
+     | 30.00th=[ 1960], 40.00th=[ 2008], 50.00th=[ 2064], 60.00th=[ 2128],
+     | 70.00th=[ 2192], 80.00th=[ 2288], 90.00th=[ 2576], 95.00th=[ 5280],
+     | 99.00th=[ 9664], 99.50th=[10176], 99.90th=[11328], 99.95th=[12864],
+     | 99.99th=[20608]
+    bw (KB  /s): min= 1389, max= 3848, per=1.00%, avg=3261.86, stdev=101.71
+    lat (msec) : 2=37.91%, 4=56.51%, 10=4.97%, 20=0.60%, 50=0.01%
+    lat (msec) : 500=0.01%
+  cpu          : usr=0.19%, sys=0.99%, ctx=4892682, majf=0, minf=3135
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued    : total=r=0/w=4888718/d=0, short=r=0/w=0/d=0, drop=r=0/w=0/d=0
+     latency   : target=0, window=0, percentile=100.00%, depth=1
+
+Run status group 0 (all jobs):
+  WRITE: io=38193MB, aggrb=325884KB/s, minb=325884KB/s, maxb=325884KB/s, mint=120011msec, maxt=120011msec
+
+Disk stats (read/write):
+    md0: ios=0/4894508, merge=0/0, ticks=0/0, in_queue=0, util=0.00%, aggrios=0/287853, aggrmerge=0/246, aggrticks=0/697912, aggrin_queue=697830, aggrutil=97.14%
+  sdc: ios=0/288037, merge=0/210, ticks=0/695507, in_queue=695414, util=96.73%
+  sdd: ios=0/287933, merge=0/167, ticks=0/693057, in_queue=692994, util=96.71%
+  sde: ios=0/287394, merge=0/167, ticks=0/697372, in_queue=697299, util=97.03%
+  sdf: ios=0/287510, merge=0/167, ticks=0/719789, in_queue=719688, util=97.14%
+  sdg: ios=0/288185, merge=0/165, ticks=0/694536, in_queue=694448, util=96.95%
+  sdh: ios=0/287894, merge=0/167, ticks=0/675855, in_queue=675757, util=96.68%
+  sdi: ios=0/287540, merge=0/293, ticks=0/696146, in_queue=696048, util=96.75%
+  sdj: ios=0/287812, merge=0/294, ticks=0/706420, in_queue=706337, util=96.82%
+  sdk: ios=0/287724, merge=0/294, ticks=0/686178, in_queue=686121, util=96.71%
+  sdl: ios=0/287457, merge=0/294, ticks=0/683111, in_queue=683043, util=96.57%
+  sdm: ios=0/287411, merge=0/294, ticks=0/686925, in_queue=686834, util=96.69%
+  sdn: ios=0/287480, merge=0/292, ticks=0/692436, in_queue=692361, util=96.61%
+  sdo: ios=0/287999, merge=0/294, ticks=0/679679, in_queue=679604, util=96.68%
+  sdp: ios=0/288348, merge=0/292, ticks=0/712565, in_queue=712472, util=96.74%
+  sdq: ios=0/288381, merge=0/292, ticks=0/707933, in_queue=707836, util=97.04%
+  sdr: ios=0/288243, merge=0/296, ticks=0/714582, in_queue=714490, util=96.80%
+  sds: ios=0/288162, merge=0/216, ticks=0/722417, in_queue=722366, util=96.99%
+testing sequential read
+fio_test_file: (g=0): rw=read, bs=8K-8K/8K-8K/8K-8K, ioengine=sync, iodepth=1
+...
+fio-2.2.8
+Starting 100 processes
+
+fio_test_file: (groupid=0, jobs=100): err= 0: pid=4913: Sat Sep  2 23:07:57 2017
+  read : io=60581MB, bw=516940KB/s, iops=64617, runt=120004msec
+    clat (usec): min=0, max=369016, avg=1545.82, stdev=1911.04
+     lat (usec): min=0, max=369016, avg=1546.10, stdev=1911.10
+    clat percentiles (usec):
+     |  1.00th=[    1],  5.00th=[    1], 10.00th=[    1], 20.00th=[    1],
+     | 30.00th=[    1], 40.00th=[ 1800], 50.00th=[ 1880], 60.00th=[ 1928],
+     | 70.00th=[ 1992], 80.00th=[ 2064], 90.00th=[ 2288], 95.00th=[ 2544],
+     | 99.00th=[10688], 99.50th=[11328], 99.90th=[12608], 99.95th=[13632],
+     | 99.99th=[19584]
+    bw (KB  /s): min= 1146, max=1320528, per=0.85%, avg=4412.76, stdev=37076.05
+    lat (usec) : 2=32.57%, 4=4.16%, 10=0.16%, 20=0.04%, 50=0.04%
+    lat (usec) : 100=0.01%, 250=0.01%, 500=0.01%, 750=0.01%, 1000=0.01%
+    lat (msec) : 2=33.74%, 4=25.90%, 10=1.39%, 20=1.99%, 50=0.01%
+    lat (msec) : 100=0.01%, 500=0.01%
+  cpu          : usr=0.18%, sys=0.66%, ctx=4887591, majf=0, minf=3676
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued    : total=r=7754352/w=0/d=0, short=r=0/w=0/d=0, drop=r=0/w=0/d=0
+     latency   : target=0, window=0, percentile=100.00%, depth=1
+
+Run status group 0 (all jobs):
+   READ: io=60581MB, aggrb=516939KB/s, minb=516939KB/s, maxb=516939KB/s, mint=120004msec, maxt=120004msec
+
+Disk stats (read/write):
+    md0: ios=4884241/4604, merge=0/0, ticks=0/0, in_queue=0, util=0.00%, aggrios=287487/276, aggrmerge=0/17, aggrticks=699305/1300, aggrin_queue=700540, aggrutil=78.87%
+  sdc: ios=287017/325, merge=0/110, ticks=692047/1444, in_queue=693457, util=78.30%
+  sdd: ios=286988/274, merge=0/98, ticks=709318/1316, in_queue=710565, util=78.66%
+  sde: ios=286592/273, merge=0/0, ticks=690678/1335, in_queue=691927, util=77.97%
+  sdf: ios=286929/273, merge=0/0, ticks=710558/1275, in_queue=711770, util=78.38%
+  sdg: ios=287759/273, merge=0/0, ticks=703239/1281, in_queue=704465, util=78.32%
+  sdh: ios=287988/273, merge=0/0, ticks=690826/1290, in_queue=692059, util=78.36%
+  sdi: ios=287641/273, merge=0/0, ticks=704259/1306, in_queue=705502, util=78.65%
+  sdj: ios=288135/273, merge=0/0, ticks=718025/1315, in_queue=719240, util=78.87%
+  sdk: ios=287817/273, merge=0/0, ticks=697712/1300, in_queue=698958, util=78.17%
+  sdl: ios=287299/273, merge=0/0, ticks=687822/1257, in_queue=688985, util=78.20%
+  sdm: ios=287449/273, merge=0/0, ticks=700337/1289, in_queue=701568, util=78.31%
+  sdn: ios=287387/273, merge=0/0, ticks=702348/1284, in_queue=703533, util=78.50%
+  sdo: ios=287737/273, merge=0/0, ticks=688519/1295, in_queue=689730, util=78.07%
+  sdp: ios=287896/274, merge=0/0, ticks=692565/1250, in_queue=693783, util=78.14%
+  sdq: ios=287812/275, merge=0/0, ticks=698748/1322, in_queue=700038, util=78.36%
+  sdr: ios=287503/275, merge=0/0, ticks=691891/1298, in_queue=693118, util=78.15%
+  sds: ios=287336/275, merge=0/90, ticks=709301/1257, in_queue=710487, util=78.42%
+
+========== done ==========
+
+
+
+========== starting tests with blocksize: 16K ==========
+
+testing sequential write
+fio_test_file: (g=0): rw=write, bs=16K-16K/16K-16K/16K-16K, ioengine=sync, iodepth=1
+...
+fio-2.2.8
+Starting 100 processes
+
+fio_test_file: (groupid=0, jobs=100): err= 0: pid=5330: Sat Sep  2 23:15:59 2017
+  write: io=76283MB, bw=650900KB/s, iops=40681, runt=120009msec
+    clat (msec): min=1, max=309, avg= 2.45, stdev= 1.36
+     lat (msec): min=1, max=309, avg= 2.46, stdev= 1.36
+    clat percentiles (usec):
+     |  1.00th=[ 1864],  5.00th=[ 1912], 10.00th=[ 1944], 20.00th=[ 1992],
+     | 30.00th=[ 2040], 40.00th=[ 2096], 50.00th=[ 2128], 60.00th=[ 2192],
+     | 70.00th=[ 2256], 80.00th=[ 2352], 90.00th=[ 2512], 95.00th=[ 4960],
+     | 99.00th=[ 8512], 99.50th=[ 8896], 99.90th=[ 9792], 99.95th=[11200],
+     | 99.99th=[23936]
+    bw (KB  /s): min= 2592, max= 7232, per=1.00%, avg=6515.20, stdev=180.27
+    lat (msec) : 2=21.38%, 4=73.26%, 10=5.27%, 20=0.07%, 50=0.02%
+    lat (msec) : 100=0.01%, 250=0.01%, 500=0.01%
+  cpu          : usr=0.21%, sys=0.95%, ctx=4884952, majf=0, minf=3240
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued    : total=r=0/w=4882118/d=0, short=r=0/w=0/d=0, drop=r=0/w=0/d=0
+     latency   : target=0, window=0, percentile=100.00%, depth=1
+
+Run status group 0 (all jobs):
+  WRITE: io=76283MB, aggrb=650900KB/s, minb=650900KB/s, maxb=650900KB/s, mint=120009msec, maxt=120009msec
+
+Disk stats (read/write):
+    md0: ios=0/4902860, merge=0/0, ticks=0/0, in_queue=0, util=0.00%, aggrios=0/287815, aggrmerge=0/829, aggrticks=0/708372, aggrin_queue=708289, aggrutil=97.37%
+  sdc: ios=0/287641, merge=0/874, ticks=0/695473, in_queue=695403, util=97.01%
+  sdd: ios=0/287745, merge=0/990, ticks=0/713760, in_queue=713687, util=97.13%
+  sde: ios=0/287676, merge=0/859, ticks=0/711756, in_queue=711690, util=97.22%
+  sdf: ios=0/287757, merge=0/874, ticks=0/709338, in_queue=709228, util=97.14%
+  sdg: ios=0/288118, merge=0/872, ticks=0/714579, in_queue=714475, util=97.28%
+  sdh: ios=0/288048, merge=0/904, ticks=0/689798, in_queue=689716, util=96.99%
+  sdi: ios=0/287818, merge=0/871, ticks=0/727129, in_queue=727053, util=97.37%
+  sdj: ios=0/287795, merge=0/889, ticks=0/709402, in_queue=709323, util=97.19%
+  sdk: ios=0/287729, merge=0/789, ticks=0/715452, in_queue=715405, util=97.23%
+  sdl: ios=0/287710, merge=0/721, ticks=0/700265, in_queue=700153, util=97.17%
+  sdm: ios=0/287927, merge=0/728, ticks=0/714767, in_queue=714697, util=97.27%
+  sdn: ios=0/287860, merge=0/740, ticks=0/707465, in_queue=707390, util=97.10%
+  sdo: ios=0/287863, merge=0/728, ticks=0/699775, in_queue=699697, util=97.05%
+  sdp: ios=0/287727, merge=0/719, ticks=0/698657, in_queue=698564, util=97.07%
+  sdq: ios=0/287790, merge=0/771, ticks=0/715565, in_queue=715502, util=97.28%
+  sdr: ios=0/287846, merge=0/896, ticks=0/699640, in_queue=699520, util=97.06%
+  sds: ios=0/287817, merge=0/869, ticks=0/719519, in_queue=719419, util=97.19%
+
+========== done ==========
