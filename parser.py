@@ -59,12 +59,53 @@ def _parse_blocksize_test(lines):
             end = i
             break
 
-    results = _parse_blocksize_test_results(lines[start:end])
+    results = _parse_operation_test_results(lines[start:end])
     lines = lines[end+1:]
     return BlockSizeTestResult(
             blocksize_kb=blocksize_kb,
             results=results,
     ), lines
 
-def _parse_blocksize_test_results(lines):
+def _parse_operation_test_results(lines):
+
+    for i, line in enumerate(lines):
+        if not line.startswith("testing"):
+            continue
+
+        operation, newlines = _parse_operation_test_result(lines[i:])
+        operations = _parse_operation_test_results(newlines)
+        operations.append(operation)
+        return operations
+
     return []
+
+def _parse_operation_test_result(lines):
+
+    parsed_operation = lines[0].split(" ")
+    operation = parsed_operation[1].strip() + " " + parsed_operation[2].strip()
+
+    throughput_kbs_prefix="{}: ".format(parsed_operation[2].strip())
+
+    for i, line in enumerate(lines[1:]):
+        if throughput_kbs_prefix in line:
+            throughput_kbs = _parse_throughput(line)
+            continue
+
+        if "lat (msec): " in line:
+            latency_ms = _parse_latency(line)
+            end = i
+            break
+
+    return OperationTestResult(
+            operation=operation,
+            throughput_kbs=throughput_kbs,
+            latency_ms=latency_ms,
+    ), []
+
+def _parse_throughput(line):
+    # ("write: "io=35480MB, bw=302754KB/s, iops=37844, runt=120004msec
+    pass
+
+def _parse_latency(line):
+    # if line.startswith("lat (msec): "min=1, max=307, avg= 2.64, stdev= 3.79
+    pass
