@@ -53,6 +53,3 @@ def _group_by_operation(bench_results):
                 grouped[res.operation].append(config)
 
     return grouped
-
-def _best_latency():
-    pass
