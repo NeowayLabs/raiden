@@ -91,7 +91,7 @@ def _parse_operation_test_result(lines):
             throughput_kbs = _parse_throughput(line)
             continue
 
-        if "lat (msec): " in line:
+        if "lat (" in line:
             latency_ms = _parse_latency(line)
             end = i + 1
             break
@@ -103,9 +103,13 @@ def _parse_operation_test_result(lines):
     ), lines[end+1:]
 
 def _parse_throughput(line):
-    # ("write: "io=35480MB, bw=302754KB/s, iops=37844, runt=120004msec
-    pass
+    return int(line.split("bw=")[1].split("KB")[0])
 
 def _parse_latency(line):
-    # if line.startswith("lat (msec): "min=1, max=307, avg= 2.64, stdev= 3.79
-    pass
+    # TODO: Handle usec/msec
+    infos = line.split(":")[1].strip()
+    infos = [info.strip() for info in infos.split(",")]
+    _min = float(infos[0].split("=")[1])
+    _max = float(infos[1].split("=")[1])
+    _avg = float(infos[2].split("=")[1])
+    return Latency(min=_min, max=_max, avg=_avg)

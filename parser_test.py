@@ -5,12 +5,17 @@ import parser
 
 class ParserTests(unittest.TestCase):
 
+    def setUp(self):
+        self.maxDiff = None
+
     def test_parse(self):
 
         with open("./testdata/chunk-size-512k.log", "r") as rawdata:
             parsed_chunk_test = parser.parse(rawdata)
+
             self.assertEqual(512, parsed_chunk_test.chunk_size_kb)
-            self.assertEqual([
+
+            self.assertEqual(
                 parser.BlockSizeTestResult(blocksize_kb=8, results=[
                         parser.OperationTestResult(
                             operation="sequential write",
@@ -23,6 +28,10 @@ class ParserTests(unittest.TestCase):
                             throughput_kbs=516940,
                         ),
                 ]),
+                parsed_chunk_test.blocksize_tests[0],
+            )
+
+            self.assertEqual(
                 parser.BlockSizeTestResult(blocksize_kb=16, results=[
                         parser.OperationTestResult(
                             operation="sequential write",
@@ -30,7 +39,8 @@ class ParserTests(unittest.TestCase):
                             throughput_kbs=650900,
                         ),
                 ]),
-            ], parsed_chunk_test.blocksize_tests)
+                parsed_chunk_test.blocksize_tests[1],
+            )
 
 if __name__ == '__main__':
     unittest.main()
