@@ -74,8 +74,7 @@ def _parse_operation_test_results(lines):
 
         operation, newlines = _parse_operation_test_result(lines[i:])
         operations = _parse_operation_test_results(newlines)
-        operations.append(operation)
-        return operations
+        return [operation] + operations
 
     return []
 
@@ -87,11 +86,12 @@ def _parse_operation_test_result(lines):
     throughput_kbs_prefix=parsed_operation[2].strip()
 
     for i, line in enumerate(lines[1:]):
+        line = line.strip()
         if throughput_kbs_prefix == line.split(":")[0].strip():
             throughput_kbs = _parse_throughput(line)
             continue
 
-        if "lat (" in line:
+        if line.startswith("lat ("):
             latency_ms = _parse_latency(line)
             end = i + 1
             break
