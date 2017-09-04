@@ -106,10 +106,24 @@ def _parse_throughput(line):
     return int(line.split("bw=")[1].split("KB")[0])
 
 def _parse_latency(line):
-    # TODO: Handle usec/msec
     infos = line.split(":")[1].strip()
     infos = [info.strip() for info in infos.split(",")]
     _min = float(infos[0].split("=")[1])
     _max = float(infos[1].split("=")[1])
     _avg = float(infos[2].split("=")[1])
-    return Latency(min=_min, max=_max, avg=_avg)
+
+    timeunit = _parse_time_unit(line)
+    if timeunit == "msec":
+        return Latency(min=_min, max=_max, avg=_avg)
+
+    if timeunit == "usec":
+        return Latency(
+            min=_usec_to_ms(_min),
+            max=_usec_to_ms(_max),
+            avg=_usec_to_ms(_avg),
+        )
+
+    raise Exception("Unknown time unit : " + timeunit)
+
+def _parse_time_unit(line):
+    return "msec"
