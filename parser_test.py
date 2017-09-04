@@ -1,6 +1,7 @@
 import unittest
 
 import parser
+import bench
 
 
 class ParserTests(unittest.TestCase):
@@ -16,15 +17,15 @@ class ParserTests(unittest.TestCase):
             self.assertEqual(512, parsed_chunk_test.chunk_size_kb)
 
             self.assertEqual(
-                parser.BlockSizeTestResult(blocksize_kb=8, results=[
-                        parser.OperationTestResult(
+                bench.BlockSizeTestResult(blocksize_kb=8, results=[
+                        bench.OperationTestResult(
                             operation="sequential write",
-                            latency_ms=parser.Latency(min=1.0,max=299.0,avg=2.45),
+                            latency_ms=bench.Latency(min=1.0,max=299.0,avg=2.45),
                             throughput_kbs=325885,
                         ),
-                        parser.OperationTestResult(
+                        bench.OperationTestResult(
                             operation="sequential read",
-                            latency_ms=parser.Latency(min=0.0, max=369.016, avg=1.5460999999999998),
+                            latency_ms=bench.Latency(min=0.0, max=369.016, avg=1.5460999999999998),
                             throughput_kbs=516940,
                         ),
                 ]),
@@ -32,10 +33,10 @@ class ParserTests(unittest.TestCase):
             )
 
             self.assertEqual(
-                parser.BlockSizeTestResult(blocksize_kb=16, results=[
-                        parser.OperationTestResult(
+                bench.BlockSizeTestResult(blocksize_kb=16, results=[
+                        bench.OperationTestResult(
                             operation="sequential write",
-                            latency_ms=parser.Latency(min=1.0, max=309.0, avg=2.46),
+                            latency_ms=bench.Latency(min=1.0, max=309.0, avg=2.46),
                             throughput_kbs=650900,
                         ),
                 ]),

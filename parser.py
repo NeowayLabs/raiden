@@ -1,28 +1,10 @@
-from collections import namedtuple
-
-BenchmarkResult = namedtuple(
-    'BenchmarkResult',
-    ['chunk_size_kb', 'blocksize_tests'],
-)
-
-BlockSizeTestResult = namedtuple(
-    'BlockSizeTestResult',
-    ['blocksize_kb', 'results'],
-)
-
-OperationTestResult = namedtuple(
-    'OperationTestResult',
-    ['operation', 'latency_ms', 'throughput_kbs'],
-)
-
-Latency = namedtuple( 'Latency', ['min', 'max', 'avg'])
-
+import bench
 
 def parse(rawdata):
     lines = rawdata.readlines()
     chunk_size, lines = _parse_chunk_size(lines)
     blocksize_tests = _parse_blocksize_tests(lines)
-    return BenchmarkResult(chunk_size_kb=chunk_size, blocksize_tests=blocksize_tests)
+    return bench.BenchmarkResult(chunk_size_kb=chunk_size, blocksize_tests=blocksize_tests)
 
 
 def _parse_chunk_size(lines):
@@ -61,7 +43,7 @@ def _parse_blocksize_test(lines):
 
     results = _parse_operation_test_results(lines[start:end])
     lines = lines[end+1:]
-    return BlockSizeTestResult(
+    return bench.BlockSizeTestResult(
             blocksize_kb=blocksize_kb,
             results=results,
     ), lines
@@ -96,7 +78,7 @@ def _parse_operation_test_result(lines):
             end = i + 1
             break
 
-    return OperationTestResult(
+    return bench.OperationTestResult(
         operation=operation,
         throughput_kbs=throughput_kbs,
         latency_ms=latency_ms,
@@ -114,10 +96,10 @@ def _parse_latency(line):
 
     timeunit = _parse_time_unit(line)
     if timeunit == "msec":
-        return Latency(min=_min, max=_max, avg=_avg)
+        return bench.Latency(min=_min, max=_max, avg=_avg)
 
     if timeunit == "usec":
-        return Latency(
+        return bench.Latency(
             min=_usec_to_ms(_min),
             max=_usec_to_ms(_max),
             avg=_usec_to_ms(_avg),
