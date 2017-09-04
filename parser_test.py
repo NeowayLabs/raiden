@@ -24,7 +24,7 @@ class ParserTests(unittest.TestCase):
                         ),
                         parser.OperationTestResult(
                             operation="sequential read",
-                            latency_ms=parser.Latency(min=0.0, max=369016.0, avg=1546.10),
+                            latency_ms=parser.Latency(min=0.0, max=369.016, avg=1.5460999999999998),
                             throughput_kbs=516940,
                         ),
                 ]),

@@ -125,5 +125,8 @@ def _parse_latency(line):
 
     raise Exception("Unknown time unit : " + timeunit)
 
+def _usec_to_ms(usec):
+    return usec / 1000.0
+
 def _parse_time_unit(line):
-    return "msec"
+    return line.split("(")[1].split(")")[0].strip()
