@@ -84,23 +84,23 @@ def _parse_operation_test_result(lines):
     parsed_operation = lines[0].split(" ")
     operation = parsed_operation[1].strip() + " " + parsed_operation[2].strip()
 
-    throughput_kbs_prefix="{}: ".format(parsed_operation[2].strip())
+    throughput_kbs_prefix=parsed_operation[2].strip()
 
     for i, line in enumerate(lines[1:]):
-        if throughput_kbs_prefix in line:
+        if throughput_kbs_prefix == line.split(":")[0].strip():
             throughput_kbs = _parse_throughput(line)
             continue
 
         if "lat (msec): " in line:
             latency_ms = _parse_latency(line)
-            end = i
+            end = i + 1
             break
 
     return OperationTestResult(
-            operation=operation,
-            throughput_kbs=throughput_kbs,
-            latency_ms=latency_ms,
-    ), []
+        operation=operation,
+        throughput_kbs=throughput_kbs,
+        latency_ms=latency_ms,
+    ), lines[end+1:]
 
 def _parse_throughput(line):
     # ("write: "io=35480MB, bw=302754KB/s, iops=37844, runt=120004msec
