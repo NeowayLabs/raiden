@@ -9,6 +9,7 @@ class ParserTests(unittest.TestCase):
     def setUp(self):
         self.maxDiff = None
 
+    @unittest.skip("TODO")
     def test_parse(self):
 
         with open("./testdata/chunk-size-512k.log", "r") as rawdata:
@@ -42,6 +43,12 @@ class ParserTests(unittest.TestCase):
                 ]),
                 parsed_chunk_test.blocksize_tests[1],
             )
+
+    def test_parse_regression_03_09_2017(self):
+        # Just validates no exception
+        with open("./testdata/regression-test-03-09-2017.log", "r") as rawdata:
+            res = parser.parse(rawdata)
+            self.assertNotEqual(0, len(res))
 
 if __name__ == '__main__':
     unittest.main()

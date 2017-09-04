@@ -4,6 +4,12 @@ import argparse
 import parser
 import analyzer
 
+def print_raid_config(cfg):
+    print("operation: {}".format(cfg.operation))
+    print("chunk_size_kb: {}".format(cfg.chunk_size_kb))
+    print("blocksize_kb: {}".format(cfg.blocksize_kb))
+    print("latency_ms: {}".format(cfg.latency_ms))
+    print("throughput_kbs: {}".format(cfg.throughput_kbs))
 
 argparser = argparse.ArgumentParser(description="Helps analyzing raiden tests output")
 
@@ -27,11 +33,12 @@ for benchmarks_file in benchmarks_files:
         parsed_results.append(parser.parse(f))
 
 configs = analyzer.bestconfigs(parsed_results)
-print("\n\nbest configurations for minimum latency (per operation):\n\n")
+print("\n\n==== best configurations for minimum latency (per operation) ====\n")
 for cfg in configs.best_latency:
-    print("operation: {}".format(cfg.operation))
-    print("chunk_size_kb: {}".format(cfg.chunk_size_kb))
-    print("blocksize_kb: {}".format(cfg.blocksize_kb))
-    print("latency_ms: {}".format(cfg.latency_ms))
-    print("throughput_kbs: {}".format(cfg.throughput_kbs))
+    print_raid_config(cfg)
+    print("\n\n")
+
+print("==== best configurations for maximum throughput (per operation) ====\n")
+for cfg in configs.best_throughput:
+    print_raid_config(cfg)
     print("\n\n")

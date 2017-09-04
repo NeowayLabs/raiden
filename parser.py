@@ -23,13 +23,15 @@ def _parse_blocksize_tests(lines):
     blocksize_tests = []
     while lines != []:
         blocksize_test, lines = _parse_blocksize_test(lines)
-        blocksize_tests.append(blocksize_test)
+        if blocksize_test is not None:
+            blocksize_tests.append(blocksize_test)
     return blocksize_tests
 
 
 def _parse_blocksize_test(lines):
     blocksize_test_start_prefix = "========== starting tests with blocksize:"
     blocksize_test_end = "========== done =========="
+    found = False
 
     for i, line in enumerate(lines):
 
@@ -39,7 +41,11 @@ def _parse_blocksize_test(lines):
 
         if line.startswith(blocksize_test_end):
             end = i
+            found = True
             break
+
+    if not found:
+        return None, []
 
     results = _parse_operation_test_results(lines[start:end])
     lines = lines[end+1:]
@@ -56,6 +62,12 @@ def _parse_operation_test_results(lines):
 
         operation, newlines = _parse_operation_test_result(lines[i:])
         operations = _parse_operation_test_results(newlines)
+
+        if operation is None:
+            # WHY: historical mistake with read/write results
+            # should be removed on the future.
+            return operations
+
         return [operation] + operations
 
     return []
@@ -77,6 +89,11 @@ def _parse_operation_test_result(lines):
             latency_ms = _parse_latency(line)
             end = i + 1
             break
+
+    if throughput_kbs_prefix == "read/write":
+        # WHY: historical mistake with read/write results
+        # should be removed on the future.
+        return None, lines[end+1:]
 
     return bench.OperationTestResult(
         operation=operation,
