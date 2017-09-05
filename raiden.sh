@@ -11,7 +11,7 @@ fi
 CHUNK_SIZE_KB=$1
 BLOCK_SIZE_BYTES=4096
 BLOCK_SIZE_KB=4
-NUMBER_RAID_DISKS=17
+NUMBER_RAID_DISKS=8
 RAID_DEVICE=/dev/md0
 TEST_RUNTIME=120
 DEVICES="
@@ -23,15 +23,6 @@ DEVICES="
     /dev/sdh
     /dev/sdi
     /dev/sdj
-    /dev/sdk
-    /dev/sdl
-    /dev/sdm
-    /dev/sdn
-    /dev/sdo
-    /dev/sdp
-    /dev/sdq
-    /dev/sdr
-    /dev/sds
 "
 
 echo "All data will be lost on configured devices, are you sure to go on ?"
