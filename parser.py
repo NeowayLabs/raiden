@@ -104,12 +104,19 @@ def _parse_operation_test_result(lines):
 def _parse_throughput(line):
     return int(line.split("bw=")[1].split("KB")[0])
 
+def _raw_latency_to_float(rawlatency):
+    parsed = rawlatency.split("K")
+    if len(parsed) > 1:
+        return float(parsed[0]) * 1000.0
+    return float(parsed[0])
+
 def _parse_latency(line):
+    print(line)
     infos = line.split(":")[1].strip()
     infos = [info.strip() for info in infos.split(",")]
-    _min = float(infos[0].split("=")[1])
-    _max = float(infos[1].split("=")[1])
-    _avg = float(infos[2].split("=")[1])
+    _min = _raw_latency_to_float(infos[0].split("=")[1])
+    _max = _raw_latency_to_float(infos[1].split("=")[1])
+    _avg = _raw_latency_to_float(infos[2].split("=")[1])
 
     timeunit = _parse_time_unit(line)
     if timeunit == "msec":
