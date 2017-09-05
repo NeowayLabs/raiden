@@ -63,7 +63,7 @@ fi
 if [ "$FILESYSTEM" == "xfs" ]; then
     # xfs allows more than 4K
     BLOCK_SIZE_BYTES=8192
-    echo "Formatting filesystem as xfs with blocksize: "$BLOCK_SIZE_BYTES"
+    echo "Formatting filesystem as xfs with blocksize: "$BLOCK_SIZE_BYTES
     mkfs.xfs -v -L pgdata -b $BLOCK_SIZE_BYTES $RAID_DEVICE
 fi
 
