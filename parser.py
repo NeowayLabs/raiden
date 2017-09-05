@@ -111,7 +111,6 @@ def _raw_latency_to_float(rawlatency):
     return float(parsed[0])
 
 def _parse_latency(line):
-    print(line)
     infos = line.split(":")[1].strip()
     infos = [info.strip() for info in infos.split(",")]
     _min = _raw_latency_to_float(infos[0].split("=")[1])

@@ -31,6 +31,7 @@ argparser.add_argument(
     help="Show all results sorted instead of just the best result",
     dest='show_all',
     default=False,
+    action='store_true'
 )
 
 args = argparser.parse_args()
