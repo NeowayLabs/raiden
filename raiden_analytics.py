@@ -23,7 +23,14 @@ argparser.add_argument(
     '--filter-blocksize',
     help="Filter all results by a blocksize before analyzing",
     dest='filter_blocksize',
-    default=0,
+)
+
+argparser.add_argument(
+    "--show-all",
+    help="Show all results sorted instead of just the best result",
+    dest='show_all',
+    default=False,
+    action='store_true'
 )
 
 args = argparser.parse_args()
@@ -40,13 +47,13 @@ for benchmarks_file in benchmarks_files:
         results = parser.parse(f)
         parsed_results.append(results)
 
-configs = analyzer.bestconfigs(parsed_results, args.filter_blocksize)
-print("\n\n==== best configurations for minimum latency (per operation) ====\n")
+configs = analyzer.bestconfigs(parsed_results, args.filter_blocksize, args.show_all)
+print("\n==== best configurations for minimum latency (per operation) ====\n")
 for cfg in configs.best_latency:
     print_raid_config(cfg)
-    print("\n\n")
+    print("")
 
 print("==== best configurations for maximum throughput (per operation) ====\n")
 for cfg in configs.best_throughput:
     print_raid_config(cfg)
-    print("\n\n")
+    print("")

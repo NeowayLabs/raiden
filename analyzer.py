@@ -17,7 +17,7 @@ BestConfigs = namedtuple(
     [ 'best_latency', 'best_throughput' ],
 )
 
-def bestconfigs(bench_results, filter_blocksize=None):
+def bestconfigs(bench_results, filter_blocksize=None, show_all=False):
     best_latency = []
     best_throughput = []
     grouped = _group_by_operation(bench_results)
@@ -30,10 +30,15 @@ def bestconfigs(bench_results, filter_blocksize=None):
             configs = [cfg for cfg in configs if cfg.blocksize_kb == filter_blocksize]
 
         sorted_by_latency = sorted(configs, key=lambda cfg: cfg.latency_ms.avg)
-        best_latency.append(sorted_by_latency[0])
-
         sorted_by_throughtput = sorted(configs, key=lambda cfg: cfg.throughput_kbs, reverse=True)
-        best_throughput.append(sorted_by_throughtput[0])
+
+        if show_all:
+            best_latency.extend(sorted_by_latency)
+            best_throughput.extend(sorted_by_throughtput)
+        else:
+            best_latency.append(sorted_by_latency[0])
+            best_throughput.append(sorted_by_throughtput[0])
+
 
     return BestConfigs(
         best_latency=best_latency,

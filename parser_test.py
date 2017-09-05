@@ -50,5 +50,11 @@ class ParserTests(unittest.TestCase):
             res = parser.parse(rawdata)
             self.assertNotEqual(0, len(res))
 
+    def test_parse_regression_04_09_2017(self):
+        # Just validates no exception
+        with open("./testdata/regression-test-04-09-2017.log", "r") as rawdata:
+            res = parser.parse(rawdata)
+            self.assertNotEqual(0, len(res))
+
 if __name__ == '__main__':
     unittest.main()
