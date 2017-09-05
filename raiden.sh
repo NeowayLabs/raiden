@@ -2,15 +2,14 @@
 
 set -o nounset
 
-if (( $# < 1 )); then
-    echo "usage: "$0" <RAID chunk size in kb>"
+if (( $# < 2 )); then
+    echo "usage: "$0" <RAID chunk size in kb> <ext4|xfs>"
     echo "eg: "$0" 256"
     exit
 fi
 
 CHUNK_SIZE_KB=$1
-BLOCK_SIZE_BYTES=4096
-BLOCK_SIZE_KB=4
+FILESYSTEM=$2
 NUMBER_RAID_DISKS=8
 RAID_DEVICE=/dev/md0
 TEST_RUNTIME=120
@@ -28,8 +27,7 @@ DEVICES="
 echo "All data will be lost on configured devices, are you sure to go on ?"
 read -p "Are you sure? " -n 1 -r
 if [[ ! $REPLY =~ ^[Yy]$ ]]
-then
-    echo "aborting"
+then echo "aborting"
     exit 0
 fi
 echo
@@ -49,14 +47,26 @@ mdadm --create --force --verbose $RAID_DEVICE \
         --chunk=$CHUNK_SIZE_KB"K" \
         --raid-devices=$NUMBER_RAID_DISKS $DEVICES
 
-# https://wiki.archlinux.org/index.php/RAID#Calculating_the_Stride_and_Stripe_Width
-# stride = chunk size / block size
-# stripe width = number of data disks * stride
-stride=$(expr $CHUNK_SIZE_KB \/ $BLOCK_SIZE_KB)
-stripe_width=$(expr $NUMBER_RAID_DISKS \* $stride)
+if [ "$FILESYSTEM" == "ext4" ]; then
+    # https://wiki.archlinux.org/index.php/RAID#Calculating_the_Stride_and_Stripe_Width
+    # stride = chunk size / block size
+    # stripe width = number of data disks * stride
+    BLOCK_SIZE_BYTES=4096
+    BLOCK_SIZE_KB=4
+    stride=$(expr $CHUNK_SIZE_KB \/ $BLOCK_SIZE_KB)
+    stripe_width=$(expr $NUMBER_RAID_DISKS \* $stride)
 
-echo "Formatting filesystem as ext4 with blocksize: "$BLOCK_SIZE_BYTES" stride: "$stride" stripe_width: "$stripe_width
-mkfs.ext4 -v -L pgdata -b $BLOCK_SIZE_BYTES -E stride=$stride,stripe-width=$stripe_width /dev/md0
+    echo "Formatting filesystem as ext4 with blocksize: "$BLOCK_SIZE_BYTES" stride: "$stride" stripe_width: "$stripe_width
+    mkfs.ext4 -v -L pgdata -b $BLOCK_SIZE_BYTES -E stride=$stride,stripe-width=$stripe_width $RAID_DEVICE
+fi
+
+if [ "$FILESYSTEM" == "xfs" ]; then
+    # xfs allows more than 4K
+    BLOCK_SIZE_BYTES=8192
+    echo "Formatting filesystem as xfs with blocksize: "$BLOCK_SIZE_BYTES" stride: "$stride" stripe_width: "$stripe_width
+    mkfs.xfs -v -L pgdata -b $BLOCK_SIZE_BYTES $RAID_DEVICE
+fi
+
 mkdir -p /fiotests
 mount /dev/md0 /fiotests
 
