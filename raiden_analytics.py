@@ -23,7 +23,6 @@ argparser.add_argument(
     '--filter-blocksize',
     help="Filter all results by a blocksize before analyzing",
     dest='filter_blocksize',
-    default=0,
 )
 
 argparser.add_argument(
