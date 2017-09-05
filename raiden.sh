@@ -62,9 +62,10 @@ fi
 
 if [ "$FILESYSTEM" == "xfs" ]; then
     # xfs allows more than 4K
+    # https://raid.wiki.kernel.org/index.php/RAID_setup#XFS
     BLOCK_SIZE_BYTES=8192
     echo "Formatting filesystem as xfs with blocksize: "$BLOCK_SIZE_BYTES
-    mkfs.xfs -v -L pgdata -b $BLOCK_SIZE_BYTES $RAID_DEVICE
+    mkfs.xfs -L pgdata -b size=$BLOCK_SIZE_BYTES -d su=$CHUNK_SIZE_KB"k" -d sw=$NUMBER_RAID_DISKS
 fi
 
 mkdir -p /fiotests
