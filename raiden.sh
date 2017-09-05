@@ -65,7 +65,7 @@ if [ "$FILESYSTEM" == "xfs" ]; then
     # https://raid.wiki.kernel.org/index.php/RAID_setup#XFS
     BLOCK_SIZE_BYTES=8192
     echo "Formatting filesystem as xfs with blocksize: "$BLOCK_SIZE_BYTES
-    mkfs.xfs -L pgdata -b size=$BLOCK_SIZE_BYTES -d su=$CHUNK_SIZE_KB"k" -d sw=$NUMBER_RAID_DISKS $RAID_DEVICE
+    mkfs.xfs -f -L pgdata -b size=$BLOCK_SIZE_BYTES -d su=$CHUNK_SIZE_KB"k" -d sw=$NUMBER_RAID_DISKS $RAID_DEVICE
 fi
 
 mkdir -p /fiotests
