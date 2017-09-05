@@ -10,6 +10,8 @@ fi
 
 CHUNK_SIZE_KB=$1
 FILESYSTEM=$2
+BLOCK_SIZE_BYTES=4096
+BLOCK_SIZE_KB=4
 NUMBER_RAID_DISKS=8
 RAID_DEVICE=/dev/md0
 TEST_RUNTIME=120
@@ -51,8 +53,6 @@ if [ "$FILESYSTEM" == "ext4" ]; then
     # https://wiki.archlinux.org/index.php/RAID#Calculating_the_Stride_and_Stripe_Width
     # stride = chunk size / block size
     # stripe width = number of data disks * stride
-    BLOCK_SIZE_BYTES=4096
-    BLOCK_SIZE_KB=4
     stride=$(expr $CHUNK_SIZE_KB \/ $BLOCK_SIZE_KB)
     stripe_width=$(expr $NUMBER_RAID_DISKS \* $stride)
 
@@ -63,7 +63,6 @@ fi
 if [ "$FILESYSTEM" == "xfs" ]; then
     # xfs allows more than 4K
     # https://raid.wiki.kernel.org/index.php/RAID_setup#XFS
-    BLOCK_SIZE_BYTES=8192
     echo "Formatting filesystem as xfs with blocksize: "$BLOCK_SIZE_BYTES
     mkfs.xfs -f -L pgdata -b size=$BLOCK_SIZE_BYTES -d su=$CHUNK_SIZE_KB"k" -d sw=$NUMBER_RAID_DISKS $RAID_DEVICE
 fi
