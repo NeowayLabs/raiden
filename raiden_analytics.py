@@ -35,7 +35,7 @@ argparser.add_argument(
 
 args = argparser.parse_args()
 if args.benchmarks_files is None:
-    parser.print_help()
+    argparser.print_help()
     exit(0)
 
 benchmarks_files = glob.glob(args.benchmarks_files)
